@@ -12,5 +12,13 @@ Features
     -Search for an item by name using binary search
     -Display a list of all items in the store
 
-I am not quite done with this project fully, I am always working towards making new updates and fixing problems when I see them.
+
+There are a few potential improvements that could be made to this project:
+
+    Add the ability to update the price of an item
+    Implement sorting the list of items by name or price
+    Add validation to ensure that the stock quantity is never negative
+    Allow the user to specify the name and price when adding a new item, rather than hardcoding them in the main method
+    
+    
 
