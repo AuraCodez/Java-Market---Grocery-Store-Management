@@ -5,12 +5,12 @@ My project is a program that is catered towards an implementation of some grocer
 
 Features
 
-    Add new items to the store with a name, price, and stock quantity
-    Remove items from the store by name
-    Increase or decrease the stock quantity of an item
-    Get the total price of all items in the store
-    Search for an item by name using binary search
-    Display a list of all items in the store
+    -Add new items to the store with a name, price, and stock quantity
+    -Remove items from the store by name
+    -Increase or decrease the stock quantity of an item
+    -Get the total price of all items in the store
+    -Search for an item by name using binary search
+    -Display a list of all items in the store
 
 I am not quite done with this project fully, I am always working towards making new updates and fixing problems when I see them.
 
