@@ -4,13 +4,13 @@ public class Item implements Comparable<Item> {
 	private double price;
 	private int quantity;
 	
-	public static void main(String [] args) {
-		Item item = new Item("Apple", 0.99, 10);
-		System.out.println(item.inStock());
-		Item idk = new Item("Chips", 0.54, 32);
-		System.out.println(idk.getTotalPrice());
-		System.out.println(idk.toString());
-	}
+	//public static void main(String [] args) {
+		//Item item = new Item("Apple", 0.99, 10);
+		//System.out.println(item.inStock());
+		//Item idk = new Item("Chips", 0.54, 32);
+		//System.out.println(idk.getTotalPrice());
+		//System.out.println(idk.toString());
+	//}
 	
 	public Item(String name, double price, int quantity) {
 		this.name = name;
