@@ -1,4 +1,3 @@
-
 public class Item implements Comparable<Item> {
 	private String name;
 	private double price;
