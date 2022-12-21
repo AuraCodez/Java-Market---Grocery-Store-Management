@@ -6,17 +6,14 @@ import java.util.Comparator;
 public class GroceryStore implements Comparable<Item>  {
 	private ArrayList<Item> items;
 	
-	public static void main(String [] args) {
-		GroceryStore store = new GroceryStore();
-		store.addItem(new Item("Grape", 4, 10));
-		store.addItem(new Item("Orange", 5, 5));
-		store.addItem(new Item("Pear", 5, 5));
-		store.addItem(new Item("Apple", 4, 10));
-		store.displayItems();
-		System.out.println(store.getTotalPriceOfGoods());
-		System.out.println(store.search("Grape"));
-		System.out.println(store.getName());
-	}
+	//public static void main(String [] args) {
+		//GroceryStore store = new GroceryStore();
+		//store.addItem(new Item("Grape", 4, 10));
+		//store.addItem(new Item("Orange", 5, 5));
+		//store.addItem(new Item("Pear", 5, 5));
+		//store.addItem(new Item("Apple", 4, 10));
+		//store.displayItems();
+	//}
 	
 	public GroceryStore() {
 		this.items = new ArrayList<Item>();
