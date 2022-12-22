@@ -9,7 +9,7 @@ Main Features
    - Remove items from the store by name
    - Increase or decrease the stock quantity of an item
    - Get the total price of all items in the store
-   - Search for an item by name using binary search
+   - Search for an item by name using binary search algorithm
    - Display a list of all items in the store
  
 
