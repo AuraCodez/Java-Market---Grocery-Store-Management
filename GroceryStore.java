@@ -3,20 +3,18 @@ import java.util.Collections;
 import java.util.Comparator;
 
 
-public class GroceryStore implements Comparable<Item>  {
+public class GroceryStore  {
 	private ArrayList<Item> items;
-	
-	//public static void main(String [] args) {
-		//GroceryStore store = new GroceryStore();
-		//store.addItem(new Item("Grape", 4, 10));
-		//store.addItem(new Item("Orange", 5, 5));
-		//store.addItem(new Item("Pear", 5, 5));
-		//store.addItem(new Item("Apple", 4, 10));
-		//store.displayItems();
-	//}
+	private ArrayList<Employee> employees;
+
 	
 	public GroceryStore() {
 		this.items = new ArrayList<Item>();
+		this.employees = new ArrayList<Employee>();
+	}
+	
+	public void hireEmployee(Employee employee) {
+		this.employees.add(employee);
 	}
 	
 	public void addItem(Item obj) {
@@ -25,15 +23,27 @@ public class GroceryStore implements Comparable<Item>  {
 		
 	}
 	
-	public String getName() { //Get name of Item
-		String name = "";
-	     for(int i = 0; i < this.items.size(); i++) {
-	    	 Item a = this.items.get(i);
-	    	 name += a.getName();
-	     }
-	     return name;
-	     
+	public int getEmployeeID(String name) {
+		   for(int i = 0; i < this.employees.size(); i++) {
+		      Employee e = this.employees.get(i);
+		      if (e.getName().equals(name)) {
+		         return e.getEmployeeId();
+		      }
+		   }
+		   return -1; //If employee is not found
+		}
+
+	
+	public ArrayList<String> getListOfItems() { //Gets the list of items that are in the store
+		ArrayList<String> itemArray = new ArrayList<String>();
+		for(int i = 0; i < this.items.size(); i++) {
+			Item a = this.items.get(i);
+			itemArray.add(a.getName());
+		}
+		Collections.sort(itemArray);
+		return itemArray;
 	}
+
 	
 	public void setNewStock(String name, int newStock) {
 		for(int i = 0; i < this.items.size(); i++) {
@@ -97,31 +107,23 @@ public class GroceryStore implements Comparable<Item>  {
 		}
 	}
 	
-
-
-	public int search(String name) {
+	
+	public int searchTest(String name) {
+		ArrayList<String> itemArray = this.getListOfItems();
 		int low = 0;
-		int high = this.items.size() - 1;
+		int high = itemArray.size() - 1;
 		while(low <= high) {
-			int mid = (low + high)/ 2;
-			Item midItem = this.items.get(mid);
-			if(name.equals(midItem.getName())) {
+			int mid = (low + high) / 2;
+			String midItem = itemArray.get(mid);
+			if(midItem.equals(name)) {
 				return mid;
-			} else if(name.compareTo(midItem.getName()) < 0) {
+			} else if(midItem.compareTo(name) < 0) {
 				low = mid + 1;
-				
-			} else if(name.compareTo(midItem.getName()) > 0) {
+			} else {
 				high = mid - 1;
 			}
-			
 		}
-		return -1; //Item is not found in items
-		
-	}
-
-	@Override
-	public int compareTo(Item o) {
-		return this.getName().compareTo(o.getName());
+		return -1; //Returning -1 if it's not found.
 	}
 
 }
