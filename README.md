@@ -1,7 +1,7 @@
 # GroceryStore
 My Object Oriented Program design and implementation of a store in Java. Three classes consist of : Employees, Item, GroceryStore
 
-My project is a program that is catered towards an implementation of some grocery store (But all stores can use this). It's useful because it can potentially help store owners keep tracking of the items they may have in stock and calculate the prices and quantity of the items. 
+My  project is a software application designed to help grocery store owners and managers keep track of their inventory and pricing. It provides useful features such as the ability to add and remove items, update stock levels, and calculate the total price of all goods in the store. This can help store owners stay organized and efficiently manage their operations. In addition, the program can be easily customized and used by any type of store, not just grocery stores.
 
 Main Features
 
