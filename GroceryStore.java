@@ -108,7 +108,7 @@ public class GroceryStore  {
 	}
 	
 	
-	public int searchTest(String name) {
+	public int searchItem(String name) {
 		ArrayList<String> itemArray = this.getListOfItems();
 		int low = 0;
 		int high = itemArray.size() - 1;
