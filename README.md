@@ -19,6 +19,7 @@ There are a few improvements I would like to make soon
    - Implement sorting the list of items by name or price
    - Add validation to ensure that the stock quantity is never negative
    - Allow the user to specify the name and price when adding a new item, rather than hardcoding them in the main method
+   - Develop a GUI in Java swing so that this program can have an interface in which people anyone can easily use
     
     
 
