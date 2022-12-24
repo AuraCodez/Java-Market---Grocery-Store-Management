@@ -17,7 +17,7 @@ public class Employee extends JDialog {
 	    this.name = name;
 	    this.salary = salary;
 	    this.employeeID = employeeIDF += 1;
-		this.gender = gender;
+	    this.gender = gender;
 	   
 	}
 
