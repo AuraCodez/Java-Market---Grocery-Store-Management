@@ -20,7 +20,7 @@ There are a few improvements I would like to make soon
    - Add validation to ensure that the stock quantity is never negative
    - Allow the user to specify the name and price when adding a new item, rather than hardcoding them in the main method
    - Adding in exceptions to deal with errors that may occur when using the program
-   - Develop a GUI in Java swing so that this program can have an interface in which people anyone can easily use
+   - Develop a GUI in Java swing so that this program can have an interface in which people anyone can easily use (In Progress)!!
     
     
 
