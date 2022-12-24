@@ -1,17 +1,23 @@
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Employee {
+public class Employee extends JDialog {
 	private String name;
 	private int employeeID;
 	private static int employeeIDF = 99;
 	private double salary;
+	private JFrame frame;
 	
 	
-	public Employee(String name, double salary) {
-		this.name = name;
-		this.salary = salary;
-		this.employeeID = employeeIDF += 1;
+	public Employee(JFrame frame, String name, double salary) {
+	    this.frame = frame;
+	    this.name = name;
+	    this.salary = salary;
+	    this.employeeID = employeeIDF += 1;
+	   
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
