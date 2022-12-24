@@ -1,6 +1,8 @@
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+
+
 public class Employee extends JDialog {
 	private String name;
 	private int employeeID;
