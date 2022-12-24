@@ -10,15 +10,14 @@ public class Employee extends JDialog {
 	private JFrame frame;
 	public JLabel test;
 	private String gender;
-	
-	
+
 	public Employee(JFrame frame, String name, double salary, String gender) {
-	    this.frame = frame;
-	    this.name = name;
-	    this.salary = salary;
-	    this.employeeID = employeeIDF += 1;
-	    this.gender = gender;
-	   
+		this.frame = frame;
+		this.name = name;
+		this.salary = salary;
+		this.employeeID = employeeIDF += 1;
+		this.gender = gender;
+
 	}
 
 	public String getName() {
@@ -28,26 +27,27 @@ public class Employee extends JDialog {
 	public String getGender() {
 		return this.gender;
 	}
-	
+
 	public double getSalary() {
 		return this.salary;
 	}
-	
+
 	public int getEmployeeId() {
 		return this.employeeID;
 	}
-	
+
 	public void raiseSalary(double amount) {
 		this.salary += amount;
 	}
-	
+
 	public void decreaseSalary(double amount) {
 		this.salary -= amount;
 	}
-	
+
 	@Override
 	public String toString() {
-	    return String.format("Employee: %s, Employee ID: %s, Salary: $%.2f", this.getName(), this.getEmployeeId(), this.getSalary());
+		return String.format("Employee: %s, Employee ID: %s, Salary: $%.2f", this.getName(), this.getEmployeeId(),
+				this.getSalary());
 	}
 
 }
