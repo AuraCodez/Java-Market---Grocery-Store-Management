@@ -2,9 +2,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
-
-
 public class Employee extends JDialog {
 	private String name;
 	private int employeeID;
@@ -12,18 +9,24 @@ public class Employee extends JDialog {
 	private double salary;
 	private JFrame frame;
 	public JLabel test;
+	private String gender;
 	
 	
-	public Employee(JFrame frame, String name, double salary) {
+	public Employee(JFrame frame, String name, double salary, String gender) {
 	    this.frame = frame;
 	    this.name = name;
 	    this.salary = salary;
 	    this.employeeID = employeeIDF += 1;
+		this.gender = gender;
 	   
 	}
 
 	public String getName() {
 		return this.name;
+	}
+
+	public String getGender() {
+		return this.gender;
 	}
 	
 	public double getSalary() {

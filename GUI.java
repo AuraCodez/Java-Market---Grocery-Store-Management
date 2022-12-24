@@ -49,6 +49,12 @@ public class GUI {
         		salaryLabel.setForeground(Color.yellow);
         		JTextField salaryField = new JTextField(20);
         		String name = nameField.getText();
+                JLabel genderLabel = new JLabel("Gender :");
+                JTextField genderField = new JTextField(20);
+                String gender = genderField.getText();
+                
+
+
         		double salary = 0.0;
         		if(salaryField.getText().isEmpty()) {
         			System.out.println("Error Empty String not valid");
@@ -60,7 +66,7 @@ public class GUI {
         		addEmployeePanel.add(salaryLabel);
         		addEmployeePanel.add(nameField);
         		addEmployeePanel.add(salaryField);
-        		Employee addEmployeeDialog = new Employee(frame, name, salary);
+        		Employee addEmployeeDialog = new Employee(frame, name, salary, gender);
         		addEmployeeDialog.add(addEmployeePanel);
         		addEmployeeDialog.setPreferredSize(new Dimension(600, 400));
         		addEmployeeDialog.setVisible(true);
