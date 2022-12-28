@@ -1,6 +1,6 @@
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 
 public class Employee extends JDialog {
 	private String name;
@@ -8,7 +8,6 @@ public class Employee extends JDialog {
 	private static int employeeIDF = 99;
 	private double salary;
 	private JFrame frame;
-	public JLabel test;
 	private String gender;
 
 	public Employee(JFrame frame, String name, double salary, String gender) {

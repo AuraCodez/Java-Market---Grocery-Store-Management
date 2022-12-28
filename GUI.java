@@ -7,19 +7,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class GUI {
     public GUI() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Store Management Program");
-        frame.setSize(800, 500);
+        frame.setTitle("Store Management Program : Created by Ryan");
+        frame.setSize(1366, 768);
         JPanel panel = new JPanel();
         panel.setBackground(Color.yellow);
         panel.setLayout(null);
 
         JButton resetEverything = new JButton("Reset Button");
         resetEverything.setPreferredSize(new Dimension(150, 75));
+
+        JButton credits = new JButton("Credits");
+        credits.setPreferredSize(new Dimension( 150, 75));
 
         JButton addEmployeeB = new JButton("New Employee");
         addEmployeeB.setPreferredSize(new Dimension(150, 75));
@@ -41,16 +46,53 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JPanel addEmployeePanel = new JPanel();
                 addEmployeePanel.setBackground(Color.BLUE);
+                addEmployeePanel.setLayout(new GridBagLayout());
+                
                 JLabel nameLabel = new JLabel("Enter name: ");
+                nameLabel.setFont(nameLabel.getFont().deriveFont(24f));
                 nameLabel.setForeground(Color.yellow);
                 JTextField nameField = new JTextField(20);
                 JLabel salaryLabel = new JLabel("Enter salary: ");
                 salaryLabel.setForeground(Color.yellow);
+                salaryLabel.setFont(salaryLabel.getFont().deriveFont(24f));
                 JTextField salaryField = new JTextField(20);
-                String name = nameField.getText();
                 JLabel genderLabel = new JLabel("Gender :");
+                JButton submitButton = new JButton("Submit");
+                genderLabel.setForeground(Color.yellow);
+                genderLabel.setFont(salaryLabel.getFont().deriveFont(24f));
                 JTextField genderField = new JTextField(20);
-                String gender = genderField.getText();
+
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.fill = GridBagConstraints.VERTICAL;
+
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                
+                addEmployeePanel.add(nameLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 1;
+                addEmployeePanel.add(nameField, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 2;
+                addEmployeePanel.add(genderLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 3;
+                addEmployeePanel.add(genderField, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 4;
+                addEmployeePanel.add(salaryLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 5;
+                addEmployeePanel.add(salaryField, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 8;
+                addEmployeePanel.add(submitButton, gbc);
 
                 double salary = 0.0;
                 if (salaryField.getText().isEmpty()) {
@@ -59,13 +101,16 @@ public class GUI {
                     salary = Double.parseDouble(salaryField.getText().trim());
 
                 }
-                addEmployeePanel.add(nameLabel);
-                addEmployeePanel.add(salaryLabel);
-                addEmployeePanel.add(nameField);
-                addEmployeePanel.add(salaryField);
+
+                String name = nameField.getText();
+                String gender = genderField.getText();
+
+
                 Employee addEmployeeDialog = new Employee(frame, name, salary, gender);
+                addEmployeePanel.setSize(new Dimension(640, 480));
+                addEmployeeDialog.setSize(640, 480);
+
                 addEmployeeDialog.add(addEmployeePanel);
-                addEmployeeDialog.setPreferredSize(new Dimension(600, 400));
                 addEmployeeDialog.setVisible(true);
 
             }
