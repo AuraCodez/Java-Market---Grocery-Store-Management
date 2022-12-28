@@ -42,6 +42,95 @@ public class GUI {
         itemList.setPreferredSize(new Dimension(150, 75));
         itemList.setBounds(500, 300, 200, 50);
 
+        addItemB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JPanel addItemPanel = new JPanel();
+                addItemPanel.setBackground(Color.BLUE);
+                addItemPanel.setLayout(new GridBagLayout());
+
+                JLabel itemNameLabel = new JLabel("Enter Item Name: ");
+                itemNameLabel.setFont(itemNameLabel.getFont().deriveFont(24f));
+                itemNameLabel.setForeground(Color.yellow);
+                JTextField itemNameLabelField = new JTextField(20);
+
+                JLabel priceLabel = new JLabel("Enter Price: ");
+                priceLabel.setFont(priceLabel.getFont().deriveFont(24f));
+                priceLabel.setForeground(Color.yellow);
+                JTextField priceLabelField = new JTextField(20);
+
+                JLabel quantityLabel = new JLabel("Enter Quantity: ");
+                quantityLabel.setFont(quantityLabel.getFont().deriveFont(24f));
+                quantityLabel.setForeground(Color.yellow);
+                JTextField quantityLabelField = new JTextField(20);
+
+                JButton submitButton = new JButton("Submit");
+
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.fill = GridBagConstraints.VERTICAL;
+
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                
+                addItemPanel.add(itemNameLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 1;
+                addItemPanel.add(itemNameLabelField, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 2;
+                addItemPanel.add(priceLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 3;
+                addItemPanel.add(priceLabelField, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 4;
+                addItemPanel.add(quantityLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 5;
+                addItemPanel.add(quantityLabelField, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 8;
+                addItemPanel.add(submitButton, gbc);
+
+                double price = 0;
+                if(priceLabelField.getText().isEmpty()) {
+                    System.out.println("Error Empty String");
+                } else {
+                    price = Double.parseDouble(priceLabelField.getText().trim());
+                }
+
+
+
+                String itemName = itemNameLabel.getText();
+
+                int quantity = 0;
+                if(quantityLabelField.getText().isEmpty()) {
+                    System.out.println("Error Empty String");
+                
+                } else {
+                    quantity = Integer.parseInt(quantityLabelField.getText().trim());
+                }
+
+                Item addItemDialogItem = new Item(itemName, price, quantity);
+                addItemPanel.setSize(new Dimension(640, 480));
+                addItemDialogItem.setSize(640, 480);
+
+                addItemDialogItem.add(addItemPanel);
+                addItemDialogItem.setVisible(true);
+
+
+
+                
+
+
+            }
+        });
+
         addEmployeeB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JPanel addEmployeePanel = new JPanel();

@@ -1,7 +1,11 @@
-public class Item implements Comparable<Item> {
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
+public class Item extends JDialog implements Comparable<Item> {
 	private String name;
 	private double price;
 	private int quantity;
+	private JFrame frame;
 	
 	
 	public Item(String name, double price, int quantity) {
