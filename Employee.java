@@ -1,6 +1,4 @@
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-
 
 public class Employee extends JDialog {
 	private String name;
@@ -42,11 +40,10 @@ public class Employee extends JDialog {
 		this.salary -= amount;
 	}
 
-    @Override
+	@Override
 	public String toString() {
-		return String.format("Employee: %s, Employee ID: %s, Gender: %s, Salary: $%.2f", 
-			this.getName(), this.getEmployeeId(), this.getGender(), this.getSalary());
+		return String.format("Employee: %s, Employee ID: %s, Gender: %s, Salary: $%.2f",
+				this.getName(), this.getEmployeeId(), this.getGender(), this.getSalary());
 	}
-	
 
 }
