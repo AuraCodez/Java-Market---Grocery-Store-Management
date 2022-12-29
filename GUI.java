@@ -2,29 +2,36 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
 public class GUI {
+
+    List<Employee> employees = new ArrayList<>();
+    List<Item> items = new ArrayList<>();
+
     public GUI() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Store Management Program : Created by Ryan");
         frame.setSize(1366, 768);
         JPanel panel = new JPanel();
-        panel.setBackground(Color.yellow);
+        panel.setBackground(Color.YELLOW);
         panel.setLayout(null);
 
-        JButton resetEverything = new JButton("Reset Button");
+        JButton resetEverything = new JButton("Reset Button"); // Work on this
         resetEverything.setPreferredSize(new Dimension(150, 75));
 
-        JButton credits = new JButton("Credits");
-        credits.setPreferredSize(new Dimension( 150, 75));
+        JButton credits = new JButton("Credits"); // Work on this
+        credits.setPreferredSize(new Dimension(150, 75));
 
         JButton addEmployeeB = new JButton("New Employee");
         addEmployeeB.setPreferredSize(new Dimension(150, 75));
@@ -41,6 +48,8 @@ public class GUI {
         JButton itemList = new JButton("Item List");
         itemList.setPreferredSize(new Dimension(150, 75));
         itemList.setBounds(500, 300, 200, 50);
+
+        JDialog itemDialog = new JDialog();
 
         addItemB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -70,7 +79,7 @@ public class GUI {
 
                 gbc.gridx = 0;
                 gbc.gridy = 0;
-                
+
                 addItemPanel.add(itemNameLabel, gbc);
 
                 gbc.gridx = 0;
@@ -97,46 +106,56 @@ public class GUI {
                 gbc.gridy = 8;
                 addItemPanel.add(submitButton, gbc);
 
-                double price = 0;
-                if(priceLabelField.getText().isEmpty()) {
-                    System.out.println("Error Empty String");
-                } else {
-                    price = Double.parseDouble(priceLabelField.getText().trim());
-                }
+                submitButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
 
+                        double price = 0;
+                        if (priceLabelField.getText().isEmpty()) {
+                            System.out.println("Error Empty String");
+                        } else {
+                            price = Double.parseDouble(priceLabelField.getText().trim());
+                        }
 
+                        int quantity = 0;
+                        if (quantityLabelField.getText().isEmpty()) {
+                            System.out.println("Error Empty String");
 
-                String itemName = itemNameLabel.getText();
+                        } else {
+                            quantity = Integer.parseInt(quantityLabelField.getText().trim());
+                        }
 
-                int quantity = 0;
-                if(quantityLabelField.getText().isEmpty()) {
-                    System.out.println("Error Empty String");
-                
-                } else {
-                    quantity = Integer.parseInt(quantityLabelField.getText().trim());
-                }
+                        String name = itemNameLabelField.getText();
+                        Item addItemDialogItem = new Item(name, price, quantity);
+                        items.add(addItemDialogItem);
 
-                Item addItemDialogItem = new Item(itemName, price, quantity);
+                    }
+                });
+
                 addItemPanel.setSize(new Dimension(640, 480));
-                addItemDialogItem.setSize(640, 480);
-
-                addItemDialogItem.add(addItemPanel);
-                addItemDialogItem.setVisible(true);
-
-
-
-                
-
+                itemDialog.setSize(640, 480);
+                itemDialog.add(addItemPanel);
+                itemDialog.setVisible(true);
 
             }
         });
+
+        itemList.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < items.size(); i++) {
+                    Item a = items.get(i);
+                    System.out.println(a.toString());
+                }
+            }
+        });
+
+        JDialog addEmployeeDialog = new JDialog();
 
         addEmployeeB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JPanel addEmployeePanel = new JPanel();
                 addEmployeePanel.setBackground(Color.BLUE);
                 addEmployeePanel.setLayout(new GridBagLayout());
-                
+
                 JLabel nameLabel = new JLabel("Enter name: ");
                 nameLabel.setFont(nameLabel.getFont().deriveFont(24f));
                 nameLabel.setForeground(Color.yellow);
@@ -156,7 +175,7 @@ public class GUI {
 
                 gbc.gridx = 0;
                 gbc.gridy = 0;
-                
+
                 addEmployeePanel.add(nameLabel, gbc);
 
                 gbc.gridx = 0;
@@ -183,25 +202,41 @@ public class GUI {
                 gbc.gridy = 8;
                 addEmployeePanel.add(submitButton, gbc);
 
-                double salary = 0.0;
-                if (salaryField.getText().isEmpty()) {
-                    System.out.println("Error Empty String not valid");
-                } else {
-                    salary = Double.parseDouble(salaryField.getText().trim());
+                submitButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        String name = nameField.getText();
+                        String gender = genderField.getText();
 
-                }
+                        double salary = 0.0;
+                        if (salaryField.getText().isEmpty()) {
+                            System.out.println("Error Empty String not valid");
+                        } else {
+                            salary = Double.parseDouble(salaryField.getText().trim());
 
-                String name = nameField.getText();
-                String gender = genderField.getText();
+                        }
 
+                        Employee obj = new Employee(name, salary, gender);
+                        employees.add(obj);
 
-                Employee addEmployeeDialog = new Employee(frame, name, salary, gender);
+                    }
+
+                });
+
                 addEmployeePanel.setSize(new Dimension(640, 480));
-                addEmployeeDialog.setSize(640, 480);
 
+                addEmployeeDialog.setSize(640, 480);
                 addEmployeeDialog.add(addEmployeePanel);
                 addEmployeeDialog.setVisible(true);
+                addEmployeePanel.setVisible(true);
 
+            }
+        });
+
+        EmployeeList.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for (Employee employee : employees) {
+                    System.out.println(employee.toString());
+                }
             }
         });
 

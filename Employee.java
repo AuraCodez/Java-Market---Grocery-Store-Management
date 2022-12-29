@@ -7,11 +7,10 @@ public class Employee extends JDialog {
 	private int employeeID;
 	private static int employeeIDF = 99;
 	private double salary;
-	private JFrame frame;
+
 	private String gender;
 
-	public Employee(JFrame frame, String name, double salary, String gender) {
-		this.frame = frame;
+	public Employee(String name, double salary, String gender) {
 		this.name = name;
 		this.salary = salary;
 		this.employeeID = employeeIDF += 1;
@@ -43,10 +42,11 @@ public class Employee extends JDialog {
 		this.salary -= amount;
 	}
 
-	@Override
+    @Override
 	public String toString() {
-		return String.format("Employee: %s, Employee ID: %s, Salary: $%.2f", this.getName(), this.getEmployeeId(),
-				this.getSalary());
+		return String.format("Employee: %s, Employee ID: %s, Gender: %s, Salary: $%.2f", 
+			this.getName(), this.getEmployeeId(), this.getGender(), this.getSalary());
 	}
+	
 
 }
