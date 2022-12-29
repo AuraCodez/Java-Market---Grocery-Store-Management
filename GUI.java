@@ -1,3 +1,5 @@
+
+//GUI Created by Ryan. L (https://github.com/AuraCodez)
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -6,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -21,7 +27,7 @@ public class GUI {
     public GUI() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Store Management Program : Created by Ryan");
+        frame.setTitle("Store Management Program : Created by Ryan (https://github.com/AuraCodez)");
         frame.setSize(1366, 768);
         JPanel panel = new JPanel();
         panel.setBackground(Color.YELLOW);
@@ -56,6 +62,7 @@ public class GUI {
                 JPanel addItemPanel = new JPanel();
                 addItemPanel.setBackground(Color.BLUE);
                 addItemPanel.setLayout(new GridBagLayout());
+                itemDialog.setTitle("Add items");
 
                 JLabel itemNameLabel = new JLabel("Enter Item Name: ");
                 itemNameLabel.setFont(itemNameLabel.getFont().deriveFont(24f));
@@ -73,6 +80,7 @@ public class GUI {
                 JTextField quantityLabelField = new JTextField(20);
 
                 JButton submitButton = new JButton("Submit");
+                JButton clearButtonforItem = new JButton("Clear Text Field");
 
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.fill = GridBagConstraints.VERTICAL;
@@ -106,6 +114,10 @@ public class GUI {
                 gbc.gridy = 8;
                 addItemPanel.add(submitButton, gbc);
 
+                gbc.gridx = 0;
+                gbc.gridy = 10;
+                addItemPanel.add(clearButtonforItem, gbc);
+
                 submitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
 
@@ -128,6 +140,14 @@ public class GUI {
                         Item addItemDialogItem = new Item(name, price, quantity);
                         items.add(addItemDialogItem);
 
+                        clearButtonforItem.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                priceLabelField.setText("");
+                                quantityLabelField.setText("");
+                                itemNameLabelField.setText("");
+                            }
+                        });
+
                     }
                 });
 
@@ -139,15 +159,6 @@ public class GUI {
             }
         });
 
-        itemList.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < items.size(); i++) {
-                    Item a = items.get(i);
-                    System.out.println(a.toString());
-                }
-            }
-        });
-
         JDialog addEmployeeDialog = new JDialog();
 
         addEmployeeB.addActionListener(new ActionListener() {
@@ -155,6 +166,7 @@ public class GUI {
                 JPanel addEmployeePanel = new JPanel();
                 addEmployeePanel.setBackground(Color.BLUE);
                 addEmployeePanel.setLayout(new GridBagLayout());
+                addEmployeeDialog.setTitle("Add Employees");
 
                 JLabel nameLabel = new JLabel("Enter name: ");
                 nameLabel.setFont(nameLabel.getFont().deriveFont(24f));
@@ -169,6 +181,8 @@ public class GUI {
                 genderLabel.setForeground(Color.yellow);
                 genderLabel.setFont(salaryLabel.getFont().deriveFont(24f));
                 JTextField genderField = new JTextField(20);
+
+                JButton clearButtonforEmployee = new JButton("Clear Text Field");
 
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.fill = GridBagConstraints.VERTICAL;
@@ -202,6 +216,10 @@ public class GUI {
                 gbc.gridy = 8;
                 addEmployeePanel.add(submitButton, gbc);
 
+                gbc.gridx = 0;
+                gbc.gridy = 10;
+                addEmployeePanel.add(clearButtonforEmployee, gbc);
+
                 submitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String name = nameField.getText();
@@ -218,6 +236,14 @@ public class GUI {
                         Employee obj = new Employee(name, salary, gender);
                         employees.add(obj);
 
+                        clearButtonforEmployee.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                nameField.setText("");
+                                salaryField.setText("");
+                                genderField.setText("");
+                            }
+                        });
+
                     }
 
                 });
@@ -232,12 +258,69 @@ public class GUI {
             }
         });
 
+        JDialog employeeListDialog = new JDialog();
         EmployeeList.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                for (Employee employee : employees) {
-                    System.out.println(employee.toString());
+                JPanel employeeListPanel = new JPanel();
+                employeeListPanel.setBackground(Color.BLUE);
+                employeeListPanel.setSize(new Dimension(640, 480));
+                employeeListDialog.setSize(640, 480);
+                employeeListDialog.setTitle("Employee Information");
+                JTextArea jtextarea = new JTextArea();
+                jtextarea.setEditable(false);
+
+                String[] columnNames = { "Name", "Employee ID", "Gender", "Salary" };
+
+                Object[][] objs = new Object[employees.size()][];
+
+                for (int i = 0; i < employees.size(); i++) {
+                    Employee a = employees.get(i);
+                    objs[i] = new Object[] { a.getName(), a.getEmployeeId(), a.getGender(), a.getSalary() };
                 }
+
+                DefaultTableModel tableModel = new DefaultTableModel(objs, columnNames);
+
+                JTable table = new JTable(tableModel);
+
+                JScrollPane scrollPane = new JScrollPane(table);
+
+                employeeListPanel.add(scrollPane);
+                employeeListDialog.add(employeeListPanel);
+                employeeListDialog.setVisible(true);
+
             }
+
+        });
+
+        JDialog itemListDialog = new JDialog();
+        itemList.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JPanel itemListPanel = new JPanel();
+                itemListPanel.setBackground(Color.BLUE);
+                itemListPanel.setSize(640, 480);
+                itemListDialog.setSize(640, 480);
+                itemListDialog.setTitle("Item Inventory");
+                JTextArea jtextarea = new JTextArea();
+                jtextarea.setEditable(false);
+
+                String[] columnNames = { "Name", "Price", "Stock" };
+                Object[][] objs = new Object[employees.size()][];
+
+                for (int i = 0; i < items.size(); i++) {
+                    Item a = items.get(i);
+                    objs[i] = new Object[] { a.getName(), a.getPrice(), a.getStock() };
+
+                }
+
+                DefaultTableModel tableModel = new DefaultTableModel(objs, columnNames);
+                JTable table = new JTable(tableModel);
+                JScrollPane scrollPane = new JScrollPane(table);
+                itemListPanel.add(scrollPane);
+                itemListDialog.add(itemListPanel);
+                itemListDialog.setVisible(true);
+
+            }
+
         });
 
         JLabel itemsLabel = new JLabel("Add new items to store by clicking the button");

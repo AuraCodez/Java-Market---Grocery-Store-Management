@@ -70,7 +70,7 @@ public class Item extends JDialog implements Comparable<Item> {
 
 	@Override
 	public String toString() {
-		return "Item: " + this.getName() + " " + " Price: " + this.getPrice() + " " + " Stock: " + this.getStock();
+		return "Item: " + this.getName() + " " + " Price: " + "$" + this.getPrice() + " " + " Stock: " + this.getStock();
 	}
 
 	@Override
