@@ -11,7 +11,12 @@ public class Employee extends JDialog {
 	public Employee(String name, double salary, String gender) {
 		this.name = name;
 		this.salary = salary;
-		this.employeeID = employeeIDF += 1;
+		if (!this.name.isEmpty() || this.salary != 0 || !this.gender.isEmpty()) {
+			this.employeeID = employeeIDF += 1;
+		} else {
+			;
+		}
+
 		this.gender = gender;
 
 	}
@@ -30,6 +35,10 @@ public class Employee extends JDialog {
 
 	public int getEmployeeId() {
 		return this.employeeID;
+	}
+
+	public void setEmployeeId(int newID) {
+		this.employeeID = newID;
 	}
 
 	public void raiseSalary(double amount) {

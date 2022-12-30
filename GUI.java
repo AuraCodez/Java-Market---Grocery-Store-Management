@@ -30,7 +30,7 @@ public class GUI {
         frame.setTitle("Store Management Program : Created by Ryan (https://github.com/AuraCodez)");
         frame.setSize(1366, 768);
         JPanel panel = new JPanel();
-        panel.setBackground(Color.YELLOW);
+        panel.setBackground(Color.yellow);
         panel.setLayout(null);
 
         JButton resetEverything = new JButton("Reset Button"); // Work on this
@@ -55,10 +55,9 @@ public class GUI {
         itemList.setPreferredSize(new Dimension(150, 75));
         itemList.setBounds(500, 300, 200, 50);
 
-        JDialog itemDialog = new JDialog();
-
         addItemB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JDialog itemDialog = new JDialog();
                 JPanel addItemPanel = new JPanel();
                 addItemPanel.setBackground(Color.BLUE);
                 addItemPanel.setLayout(new GridBagLayout());
@@ -81,6 +80,10 @@ public class GUI {
 
                 JButton submitButton = new JButton("Submit");
                 JButton clearButtonforItem = new JButton("Clear Text Field");
+
+                JLabel addedButtonItem = new JLabel();
+                addedButtonItem.setForeground(Color.ORANGE);
+                addedButtonItem.setFont(addedButtonItem.getFont().deriveFont(24f));
 
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.fill = GridBagConstraints.VERTICAL;
@@ -118,6 +121,10 @@ public class GUI {
                 gbc.gridy = 10;
                 addItemPanel.add(clearButtonforItem, gbc);
 
+                gbc.gridx = 0;
+                gbc.gridy = 14;
+                addItemPanel.add(addedButtonItem, gbc);
+
                 submitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
 
@@ -140,6 +147,13 @@ public class GUI {
                         Item addItemDialogItem = new Item(name, price, quantity);
                         items.add(addItemDialogItem);
 
+                        if (!priceLabelField.getText().isEmpty() && !quantityLabelField.getText().isEmpty()
+                                && !itemNameLabelField.getText().isEmpty()) {
+                            addedButtonItem.setText("Added Succesfully");
+                        } else {
+                            addedButtonItem.setText("Error : Try Again");
+                        }
+
                         clearButtonforItem.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
                                 priceLabelField.setText("");
@@ -159,10 +173,9 @@ public class GUI {
             }
         });
 
-        JDialog addEmployeeDialog = new JDialog();
-
         addEmployeeB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JDialog addEmployeeDialog = new JDialog();
                 JPanel addEmployeePanel = new JPanel();
                 addEmployeePanel.setBackground(Color.BLUE);
                 addEmployeePanel.setLayout(new GridBagLayout());
@@ -184,36 +197,43 @@ public class GUI {
 
                 JButton clearButtonforEmployee = new JButton("Clear Text Field");
 
+                JLabel employeeAddedButton = new JLabel();
+                employeeAddedButton.setForeground(Color.ORANGE);
+                employeeAddedButton.setFont(employeeAddedButton.getFont().deriveFont(24f));
+
                 GridBagConstraints gbc = new GridBagConstraints();
-                gbc.fill = GridBagConstraints.VERTICAL;
+                gbc.fill = GridBagConstraints.NONE;
 
                 gbc.gridx = 0;
-                gbc.gridy = 0;
-
-                addEmployeePanel.add(nameLabel, gbc);
+                gbc.gridy = 14;
+                addEmployeePanel.add(employeeAddedButton, gbc);
 
                 gbc.gridx = 0;
                 gbc.gridy = 1;
-                addEmployeePanel.add(nameField, gbc);
+                addEmployeePanel.add(nameLabel, gbc);
 
                 gbc.gridx = 0;
                 gbc.gridy = 2;
-                addEmployeePanel.add(genderLabel, gbc);
+                addEmployeePanel.add(nameField, gbc);
 
                 gbc.gridx = 0;
                 gbc.gridy = 3;
-                addEmployeePanel.add(genderField, gbc);
+                addEmployeePanel.add(genderLabel, gbc);
 
                 gbc.gridx = 0;
                 gbc.gridy = 4;
-                addEmployeePanel.add(salaryLabel, gbc);
+                addEmployeePanel.add(genderField, gbc);
 
                 gbc.gridx = 0;
                 gbc.gridy = 5;
+                addEmployeePanel.add(salaryLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 6;
                 addEmployeePanel.add(salaryField, gbc);
 
                 gbc.gridx = 0;
-                gbc.gridy = 8;
+                gbc.gridy = 7;
                 addEmployeePanel.add(submitButton, gbc);
 
                 gbc.gridx = 0;
@@ -231,6 +251,13 @@ public class GUI {
                         } else {
                             salary = Double.parseDouble(salaryField.getText().trim());
 
+                        }
+
+                        if (!nameField.getText().isEmpty() && !salaryField.getText().isEmpty()
+                                && !genderField.getText().isEmpty()) {
+                            employeeAddedButton.setText("Added Succesfully");
+                        } else {
+                            employeeAddedButton.setText("Error Try Again");
                         }
 
                         Employee obj = new Employee(name, salary, gender);
@@ -258,9 +285,9 @@ public class GUI {
             }
         });
 
-        JDialog employeeListDialog = new JDialog();
         EmployeeList.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JDialog employeeListDialog = new JDialog();
                 JPanel employeeListPanel = new JPanel();
                 employeeListPanel.setBackground(Color.BLUE);
                 employeeListPanel.setSize(new Dimension(640, 480));
@@ -271,14 +298,18 @@ public class GUI {
 
                 String[] columnNames = { "Name", "Employee ID", "Gender", "Salary" };
 
-                Object[][] objs = new Object[employees.size()][];
+                DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
                 for (int i = 0; i < employees.size(); i++) {
                     Employee a = employees.get(i);
-                    objs[i] = new Object[] { a.getName(), a.getEmployeeId(), a.getGender(), a.getSalary() };
-                }
+                    if (a.getName().isEmpty() || a.getGender().isEmpty() || a.getSalary() == 0) {
+                        continue;
+                    } else {
+                        Object[] rows = { a.getName(), a.getEmployeeId(), a.getGender(), a.getSalary() };
+                        tableModel.addRow(rows);
+                    }
 
-                DefaultTableModel tableModel = new DefaultTableModel(objs, columnNames);
+                }
 
                 JTable table = new JTable(tableModel);
 
@@ -292,9 +323,9 @@ public class GUI {
 
         });
 
-        JDialog itemListDialog = new JDialog();
         itemList.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JDialog itemListDialog = new JDialog();
                 JPanel itemListPanel = new JPanel();
                 itemListPanel.setBackground(Color.BLUE);
                 itemListPanel.setSize(640, 480);
@@ -304,23 +335,27 @@ public class GUI {
                 jtextarea.setEditable(false);
 
                 String[] columnNames = { "Name", "Price", "Stock" };
-                Object[][] objs = new Object[employees.size()][];
+                DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
                 for (int i = 0; i < items.size(); i++) {
                     Item a = items.get(i);
-                    objs[i] = new Object[] { a.getName(), a.getPrice(), a.getStock() };
+                    if (a.getName().isEmpty() || a.getPrice() == 0 || a.getStock() == 0) {
+                        continue;
+                    } else {
+                        Object[] row = { a.getName(), a.getPrice(), a.getStock() };
+                        tableModel.addRow(row);
+                    }
 
                 }
 
-                DefaultTableModel tableModel = new DefaultTableModel(objs, columnNames);
                 JTable table = new JTable(tableModel);
                 JScrollPane scrollPane = new JScrollPane(table);
+                table.setModel(tableModel);
+
                 itemListPanel.add(scrollPane);
                 itemListDialog.add(itemListPanel);
                 itemListDialog.setVisible(true);
-
             }
-
         });
 
         JLabel itemsLabel = new JLabel("Add new items to store by clicking the button");
