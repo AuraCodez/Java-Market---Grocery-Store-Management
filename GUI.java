@@ -380,6 +380,7 @@ public class GUI {
         panel.add(itemStock);
 
         frame.add(panel);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
