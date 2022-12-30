@@ -168,6 +168,7 @@ public class GUI {
                 addItemPanel.setSize(new Dimension(640, 480));
                 itemDialog.setSize(640, 480);
                 itemDialog.add(addItemPanel);
+                itemDialog.setLocationRelativeTo(null);
                 itemDialog.setVisible(true);
 
             }
@@ -279,6 +280,7 @@ public class GUI {
 
                 addEmployeeDialog.setSize(640, 480);
                 addEmployeeDialog.add(addEmployeePanel);
+                addEmployeeDialog.setLocationRelativeTo(null);
                 addEmployeeDialog.setVisible(true);
                 addEmployeePanel.setVisible(true);
 
@@ -317,6 +319,7 @@ public class GUI {
 
                 employeeListPanel.add(scrollPane);
                 employeeListDialog.add(employeeListPanel);
+                employeeListDialog.setLocationRelativeTo(null);
                 employeeListDialog.setVisible(true);
 
             }
@@ -354,6 +357,7 @@ public class GUI {
 
                 itemListPanel.add(scrollPane);
                 itemListDialog.add(itemListPanel);
+                itemListDialog.setLocationRelativeTo(null);
                 itemListDialog.setVisible(true);
             }
         });
