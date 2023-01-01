@@ -115,11 +115,11 @@ public class GUI {
 
                 gbc.gridx = 1;
                 gbc.gridy = 0;
-                searchEmployeePanel.add(searchField);
+                searchEmployeePanel.add(searchField, gbc);
 
                 gbc.gridx = 2;
                 gbc.gridy = 0;
-                searchEmployeePanel.add(submitSearch);
+                searchEmployeePanel.add(submitSearch, gbc);
 
                 gbc.gridx = 1;
                 gbc.gridy = 4;
