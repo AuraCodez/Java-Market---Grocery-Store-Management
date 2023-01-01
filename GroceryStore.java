@@ -121,7 +121,7 @@ public class GroceryStore {
 		while (low <= high) {
 			int mid = (low + high) / 2;
 			String midItem = itemArray.get(mid);
-			if (midItem.equals(name)) {
+			if (midItem.toLowerCase().equals(name)) {
 				return mid;
 			} else if (midItem.compareTo(name) < 0) {
 				low = mid + 1;
@@ -140,7 +140,7 @@ public class GroceryStore {
 		while (low <= high) {
 			int mid = (low + high) / 2;
 			String midEmployee = employeeArray.get(mid);
-			if (midEmployee.equals(name)) {
+			if (midEmployee.toLowerCase().equals(name)) {
 				return mid;
 			} else if (midEmployee.compareTo(name) < 0) {
 				low = mid + 1;

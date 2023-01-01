@@ -131,7 +131,7 @@ public class GUI {
                 submitSearch.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (!searchField.getText().isEmpty()) {
-                            if (store.searchEmployee(searchField.getText()) != -1) {
+                            if (store.searchEmployee(searchField.getText().toLowerCase().trim()) != -1) {
                                 isEmployeeFound.setText("Employee is found");
                             } else {
                                 isEmployeeFound.setText("Not Found");
@@ -193,7 +193,7 @@ public class GUI {
                 submitSearch.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (!searchItemField.getText().isEmpty()) {
-                            if (store.searchItem(searchItemField.getText()) != -1) {
+                            if (store.searchItem(searchItemField.getText().toLowerCase().trim()) != -1) {
                                 isFound.setText("In stock!");
                             } else {
                                 isFound.setText("Not in stock!");
@@ -305,7 +305,7 @@ public class GUI {
                         }
 
                         String name = itemNameLabelField.getText();
-                        Item itemObj = new Item(name, price, quantity);
+                        Item itemObj = new Item(name.trim(), price, quantity);
                         items.add(itemObj);
 
                         if (!priceLabelField.getText().isEmpty() && !quantityLabelField.getText().isEmpty()
@@ -422,7 +422,7 @@ public class GUI {
                             employeeAddedButton.setText("Error Try Again");
                         }
 
-                        Employee obj = new Employee(name, salary, gender);
+                        Employee obj = new Employee(name.trim(), salary, gender);
                         employees.add(obj);
 
                         clearButtonforEmployee.addActionListener(new ActionListener() {
