@@ -19,18 +19,21 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.FlowLayout;
 
 public class GUI {
 
     List<Employee> employees = new ArrayList<>();
     List<Item> items = new ArrayList<>();
     GroceryStore store = new GroceryStore(items, employees);
+    private JTable table;
+    private JTable itemTable;
 
     public GUI() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Store Management Program : Created by Ryan (https://github.com/AuraCodez)");
-        frame.setSize(900, 700);
+        frame.setSize(1050, 750);
         JPanel panel = new JPanel();
         int red = 173;
         int green = 216;
@@ -367,7 +370,7 @@ public class GUI {
                 gbc.fill = GridBagConstraints.NONE;
 
                 gbc.gridx = 0;
-                gbc.gridy = 14;
+                gbc.gridy = 12;
                 addEmployeePanel.add(employeeAddedButton, gbc);
 
                 gbc.gridx = 0;
@@ -452,12 +455,88 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog employeeListDialog = new JDialog();
                 JPanel employeeListPanel = new JPanel();
+                employeeListPanel.setLayout(new FlowLayout());
+                JButton removeEmployee = new JButton("Remove Employee");
+                removeEmployee.setPreferredSize(new Dimension(200, 75));
+                removeEmployee.setBackground(Color.RED);
+                removeEmployee.setBounds(650, 225, 150, 75);
                 employeeListPanel.setBackground(Color.BLUE);
-                employeeListPanel.setSize(new Dimension(640, 480));
-                employeeListDialog.setSize(640, 480);
+                employeeListPanel.setSize(new Dimension(840, 480));
+                employeeListDialog.setSize(840, 480);
                 employeeListDialog.setTitle("Employee Information");
+
                 JTextArea jtextarea = new JTextArea();
                 jtextarea.setEditable(false);
+
+                removeEmployee.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        JDialog removeEmployeeAction = new JDialog();
+                        JPanel removeListPanel = new JPanel();
+                        removeListPanel.setLayout(new GridBagLayout());
+
+                        JTextField removeEmployeeField = new JTextField(20);
+                        JLabel removeEmployeeLabel = new JLabel("Enter Name of employee");
+                        removeEmployeeLabel.setFont(removeEmployeeLabel.getFont().deriveFont(24f));
+                        removeEmployeeLabel.setForeground(Color.YELLOW);
+
+                        JButton remove = new JButton("Remove");
+                        remove.setBackground(Color.RED);
+                        remove.setSize(100, 100);
+
+                        JLabel isRemoved = new JLabel();
+                        isRemoved.setFont(isRemoved.getFont().deriveFont(24f));
+                        isRemoved.setForeground(Color.ORANGE);
+
+                        GridBagConstraints gbc = new GridBagConstraints();
+                        gbc.fill = GridBagConstraints.CENTER;
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 0;
+                        removeListPanel.add(removeEmployeeLabel, gbc);
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 2;
+                        removeListPanel.add(removeEmployeeField, gbc);
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 4;
+                        removeListPanel.add(remove, gbc);
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 5;
+                        removeListPanel.add(isRemoved, gbc);
+
+                        remove.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                DefaultTableModel dTable = (DefaultTableModel) table.getModel();
+                                for (int i = 0; i < dTable.getRowCount(); i++) {
+                                    String value = dTable.getValueAt(i, 0).toString();
+                                    if (removeEmployeeField.getText().toLowerCase().equals(value.toLowerCase())) {
+                                        isRemoved.setText("Removed from Database");
+                                        dTable.removeRow(i);
+                                        employees.remove(i);
+                                    } else {
+                                        isRemoved.setText("Name not found!");
+                                    }
+
+                                    if (removeEmployeeField.getText().isEmpty()) {
+                                        isRemoved.setText("Error: Empty input");
+                                    }
+                                }
+
+                            }
+                        });
+
+                        removeListPanel.setSize(640, 480);
+                        removeEmployeeAction.setSize(640, 480);
+                        removeListPanel.setBackground(Color.BLUE);
+                        removeEmployeeAction.setTitle("Remove Employee");
+                        removeEmployeeAction.add(removeListPanel);
+                        removeEmployeeAction.setLocationRelativeTo(null);
+                        removeEmployeeAction.setVisible(true);
+
+                    }
+                });
 
                 String[] columnNames = { "Name", "Employee ID", "Gender", "Salary" };
 
@@ -474,11 +553,12 @@ public class GUI {
 
                 }
 
-                JTable table = new JTable(tableModel);
+                table = new JTable(tableModel);
 
                 JScrollPane scrollPane = new JScrollPane(table);
 
                 employeeListPanel.add(scrollPane);
+                employeeListDialog.add(removeEmployee);
                 employeeListDialog.add(employeeListPanel);
                 employeeListDialog.setLocationRelativeTo(null);
                 employeeListDialog.setVisible(true);
@@ -491,12 +571,87 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog itemListDialog = new JDialog();
                 JPanel itemListPanel = new JPanel();
+                JButton removeItem = new JButton("Remove Item");
+                removeItem.setBackground(Color.RED);
+                removeItem.setPreferredSize(new Dimension(200, 75));
                 itemListPanel.setBackground(Color.BLUE);
-                itemListPanel.setSize(640, 480);
-                itemListDialog.setSize(640, 480);
+                itemListPanel.setSize(new Dimension(840, 480));
+                itemListDialog.setSize(840, 480);
                 itemListDialog.setTitle("Item Inventory");
+
                 JTextArea jtextarea = new JTextArea();
                 jtextarea.setEditable(false);
+
+                removeItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        JDialog removeItemAction = new JDialog();
+                        JPanel removeListPanel = new JPanel();
+                        removeListPanel.setLayout(new GridBagLayout());
+
+                        JLabel removeItemLabel = new JLabel("Enter item name");
+                        removeItemLabel.setFont(removeItemLabel.getFont().deriveFont(24f));
+                        removeItemLabel.setForeground(Color.YELLOW);
+
+                        JLabel isRemovedItem = new JLabel();
+                        isRemovedItem.setFont(isRemovedItem.getFont().deriveFont(24f));
+                        isRemovedItem.setForeground(Color.YELLOW);
+
+                        JTextField removeItemField = new JTextField(20);
+                        JButton remove = new JButton("Remove Item");
+                        remove.setBackground(Color.RED);
+
+                        GridBagConstraints gbc = new GridBagConstraints();
+
+                        gbc.fill = GridBagConstraints.CENTER;
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 0;
+                        removeListPanel.add(removeItemLabel, gbc);
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 2;
+                        removeListPanel.add(removeItemField, gbc);
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 4;
+                        removeListPanel.add(remove, gbc);
+
+                        gbc.gridx = 0;
+                        gbc.gridy = 5;
+                        removeListPanel.add(isRemovedItem, gbc);
+
+                        remove.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                DefaultTableModel dTable = (DefaultTableModel) itemTable.getModel();
+                                for (int i = 0; i < dTable.getRowCount(); i++) {
+                                    String value = dTable.getValueAt(i, 0).toString();
+
+                                    if (value.toLowerCase().equals(removeItemField.getText().toLowerCase())) {
+                                        isRemovedItem.setText("Removed from Database");
+                                        dTable.removeRow(i);
+                                        items.remove(i);
+                                    } else {
+                                        isRemovedItem.setText("Name not found!");
+                                    }
+
+                                    if (removeItemField.getText().isEmpty()) {
+                                        isRemovedItem.setText("Error: Empty input");
+                                    }
+                                }
+                            }
+                        });
+
+                        removeListPanel.setSize(640, 480);
+                        removeItemAction.setSize(640, 480);
+
+                        removeListPanel.setBackground(Color.BLUE);
+                        removeItemAction.setTitle("Remove Employee");
+                        removeItemAction.add(removeListPanel);
+                        removeItemAction.setLocationRelativeTo(null);
+                        removeItemAction.setVisible(true);
+
+                    }
+                });
 
                 String[] columnNames = { "Name", "Price", "Stock" };
                 DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
@@ -512,11 +667,11 @@ public class GUI {
 
                 }
 
-                JTable table = new JTable(tableModel);
-                JScrollPane scrollPane = new JScrollPane(table);
-                table.setModel(tableModel);
+                itemTable = new JTable(tableModel);
+                JScrollPane scrollPane = new JScrollPane(itemTable);
 
                 itemListPanel.add(scrollPane);
+                itemListPanel.add(removeItem);
                 itemListDialog.add(itemListPanel);
                 itemListDialog.setLocationRelativeTo(null);
                 itemListDialog.setVisible(true);
