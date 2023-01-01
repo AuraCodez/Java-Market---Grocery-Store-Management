@@ -2,6 +2,7 @@
 //GUI Created by Ryan. L (https://github.com/AuraCodez)
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,15 +24,42 @@ public class GUI {
 
     List<Employee> employees = new ArrayList<>();
     List<Item> items = new ArrayList<>();
+    GroceryStore store = new GroceryStore(items, employees);
 
     public GUI() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Store Management Program : Created by Ryan (https://github.com/AuraCodez)");
-        frame.setSize(1366, 768);
+        frame.setSize(900, 700);
         JPanel panel = new JPanel();
-        panel.setBackground(Color.yellow);
+        int red = 173;
+        int green = 216;
+        int blue = 230;
+        Color color = new Color(red, green, blue);
+        panel.setBackground(color);
+
         panel.setLayout(null);
+
+        JButton clickNext = new JButton("Next Page");
+        clickNext.setBackground(Color.green);
+        clickNext.setPreferredSize(new Dimension(150, 75));
+        clickNext.setBounds(325, 500, 200, 50);
+        clickNext.setFont(new Font(clickNext.getFont().getName(), clickNext.getFont().getStyle(), 18));
+        // panel.add(clickNext);
+
+        JFrame nextPage = new JFrame();
+        nextPage.setLayout(null);
+        JButton button1 = new JButton("Button 1");
+        button1.setBounds(50, 50, 100, 50);
+        nextPage.add(button1);
+
+        clickNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(store.getListOfItems());
+                nextPage.setLocationRelativeTo(null);
+            }
+        });
 
         JButton resetEverything = new JButton("Reset Button"); // Work on this
         resetEverything.setPreferredSize(new Dimension(150, 75));
@@ -54,6 +82,139 @@ public class GUI {
         JButton itemList = new JButton("Item List");
         itemList.setPreferredSize(new Dimension(150, 75));
         itemList.setBounds(500, 300, 200, 50);
+
+        JButton searchItemB = new JButton("Search for Item");
+        searchItemB.setPreferredSize(new Dimension(150, 75));
+        searchItemB.setBounds(100, 495, 200, 50);
+
+        JButton searchEmployeeB = new JButton("Search for Employee");
+        searchEmployeeB.setPreferredSize(new Dimension(150, 75));
+        searchEmployeeB.setBounds(500, 495, 200, 50);
+
+        searchEmployeeB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JDialog searchEmployeeDialog = new JDialog();
+                JPanel searchEmployeePanel = new JPanel();
+                searchEmployeePanel.setBackground(Color.blue);
+                searchEmployeePanel.setLayout(new GridBagLayout());
+
+                JLabel searchEmployeeName = new JLabel("Enter Employee Name: ");
+                JButton submitSearch = new JButton("Search");
+
+                JLabel isEmployeeFound = new JLabel();
+                searchEmployeeName.setForeground(Color.yellow);
+                searchEmployeeName.setFont(searchEmployeeName.getFont().deriveFont(24f));
+
+                JTextField searchField = new JTextField(20);
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.fill = GridBagConstraints.VERTICAL;
+
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                searchEmployeePanel.add(searchEmployeeName, gbc);
+
+                gbc.gridx = 1;
+                gbc.gridy = 0;
+                searchEmployeePanel.add(searchField);
+
+                gbc.gridx = 2;
+                gbc.gridy = 0;
+                searchEmployeePanel.add(submitSearch);
+
+                gbc.gridx = 1;
+                gbc.gridy = 4;
+                searchEmployeePanel.add(isEmployeeFound, gbc);
+
+                isEmployeeFound.setForeground(Color.ORANGE);
+                isEmployeeFound.setFont(isEmployeeFound.getFont().deriveFont(24f));
+
+                submitSearch.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        if (!searchField.getText().isEmpty()) {
+                            if (store.searchEmployee(searchField.getText()) != -1) {
+                                isEmployeeFound.setText("Employee is found");
+                            } else {
+                                isEmployeeFound.setText("Not Found");
+                            }
+                        }
+
+                        if (searchField.getText().isEmpty()) {
+                            isEmployeeFound.setText("Error: No input");
+                        }
+                    }
+                });
+                searchEmployeeDialog.setSize(640, 480);
+                searchEmployeeDialog.setTitle("Search Employee");
+                searchEmployeeDialog.setLocationRelativeTo(null);
+                searchEmployeeDialog.add(searchEmployeePanel);
+                searchEmployeeDialog.setVisible(true);
+
+            }
+        });
+
+        searchItemB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JDialog searchItemDialog = new JDialog();
+                JPanel searchItemPanel = new JPanel();
+                searchItemPanel.setBackground(Color.BLUE);
+                searchItemPanel.setLayout(new GridBagLayout());
+
+                JButton submitSearch = new JButton("Search");
+
+                JLabel isFound = new JLabel();
+
+                JLabel searchItemName = new JLabel("Enter Item Name: ");
+                searchItemName.setForeground(Color.yellow);
+                searchItemName.setFont(searchItemName.getFont().deriveFont(24f));
+
+                JTextField searchItemField = new JTextField(20);
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.fill = GridBagConstraints.VERTICAL;
+
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                searchItemPanel.add(searchItemName, gbc);
+
+                gbc.gridx = 1;
+                gbc.gridy = 0;
+                searchItemPanel.add(searchItemField, gbc);
+
+                gbc.gridx = 2;
+                gbc.gridy = 0;
+                searchItemPanel.add(submitSearch, gbc);
+
+                gbc.gridx = 1;
+                gbc.gridy = 4;
+                searchItemPanel.add(isFound, gbc);
+
+                isFound.setForeground(Color.ORANGE);
+                isFound.setFont(isFound.getFont().deriveFont(24f));
+
+                submitSearch.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        if (!searchItemField.getText().isEmpty()) {
+                            if (store.searchItem(searchItemField.getText()) != -1) {
+                                isFound.setText("In stock!");
+                            } else {
+                                isFound.setText("Not in stock!");
+                            }
+                        }
+
+                        if (searchItemField.getText().isEmpty()) {
+                            isFound.setText("Error: no input");
+                        }
+
+                    }
+
+                });
+
+                searchItemDialog.setSize(640, 480);
+                searchItemDialog.setLocationRelativeTo(null);
+                searchItemDialog.add(searchItemPanel);
+                searchItemDialog.setTitle("Search Item");
+                searchItemDialog.setVisible(true);
+            }
+        });
 
         addItemB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -144,8 +305,8 @@ public class GUI {
                         }
 
                         String name = itemNameLabelField.getText();
-                        Item addItemDialogItem = new Item(name, price, quantity);
-                        items.add(addItemDialogItem);
+                        Item itemObj = new Item(name, price, quantity);
+                        items.add(itemObj);
 
                         if (!priceLabelField.getText().isEmpty() && !quantityLabelField.getText().isEmpty()
                                 && !itemNameLabelField.getText().isEmpty()) {
@@ -374,14 +535,24 @@ public class GUI {
         JLabel label = new JLabel("Add new employees by clicking the button");
         label.setBounds(100, 100, 350, 150);
 
+        JLabel searchItemLabel = new JLabel("Check if an item in the inventory");
+        searchItemLabel.setBounds(100, 500, 350, 150);
+
+        JLabel searchEmployeeLabel = new JLabel("Check if an employee is in the store");
+        searchEmployeeLabel.setBounds(500, 500, 250, 150);
+
         panel.add(addEmployeeB);
         panel.add(EmployeeList);
         panel.add(employeeListLabel);
+        panel.add(searchItemB);
+        panel.add(searchItemLabel);
         panel.add(label);
         panel.add(addItemB);
         panel.add(itemsLabel);
         panel.add(itemList);
         panel.add(itemStock);
+        panel.add(searchEmployeeB);
+        panel.add(searchEmployeeLabel);
 
         frame.add(panel);
         frame.setLocationRelativeTo(null);
