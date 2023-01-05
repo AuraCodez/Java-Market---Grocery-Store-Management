@@ -13,10 +13,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
@@ -46,21 +50,14 @@ public class GUI {
         JButton clickNext = new JButton("Next Page");
         clickNext.setBackground(Color.green);
         clickNext.setPreferredSize(new Dimension(150, 75));
-        clickNext.setBounds(325, 500, 200, 50);
+        clickNext.setBounds(800, 500, 200, 50);
         clickNext.setFont(new Font(clickNext.getFont().getName(), clickNext.getFont().getStyle(), 18));
-        // panel.add(clickNext);
-
-        JFrame nextPage = new JFrame();
-        nextPage.setLayout(null);
-        JButton button1 = new JButton("Button 1");
-        button1.setBounds(50, 50, 100, 50);
-        nextPage.add(button1);
+        panel.add(clickNext);
 
         clickNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(store.getListOfItems());
-                nextPage.setLocationRelativeTo(null);
+                openNextPage(frame, panel);
             }
         });
 
@@ -710,12 +707,98 @@ public class GUI {
         panel.add(searchEmployeeLabel);
 
         frame.add(panel);
+        frame.setContentPane(panel);
+
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
     public static void main(String[] args) {
         new GUI();
+    }
+
+    public  void openNextPage(JFrame frame, JPanel panel) {
+        int red = 173;
+        int green = 216;
+        int blue = 230;
+        JPanel panel2 = new JPanel();
+        panel2.setLayout(null);
+        Color color = new Color(red, green, blue);
+        panel2.setBackground(color);
+
+        JButton updateStock = new JButton("Update Stocks");
+        updateStock.setBounds(100, 100, 200, 50);
+        JLabel updateLabel = new JLabel("Update Current Inventory");
+        updateLabel.setBounds(100, 100, 350, 150);
+
+        updateStock.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JDialog updateStockDialog = new JDialog();
+                JPanel updatePanel = new JPanel();
+                updatePanel.setBackground(Color.BLUE);
+                updatePanel.setLayout(new GridBagLayout());
+
+                JLabel chooseLabel = new JLabel("What item you want to update?");
+                chooseLabel.setFont(chooseLabel.getFont().deriveFont(24f));
+                chooseLabel.setForeground(Color.YELLOW);
+
+                
+                
+                //System.out.println(store.getListOfItems());
+                JList<Item> list = new JList<Item>();
+                DefaultListModel<Item> listModel = new DefaultListModel<Item>();
+                for(int i = 0; i < items.size(); i++) {
+                    Item a = items.get(i);
+                    listModel.addElement(a);
+                }
+                System.out.println(listModel);
+
+
+                
+                list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+
+                
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                updatePanel.add(chooseLabel, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 2;
+
+                updatePanel.add(list, gbc);
+
+
+                updateStockDialog.setSize(640, 480);
+                updateStockDialog.setLocationRelativeTo(null);
+                updateStockDialog.add(updatePanel);
+                updateStockDialog.setVisible(true);
+
+            }
+        });
+
+        // A button go back to the original panel.
+        JButton buttonToGoBack = new JButton("Back");
+        buttonToGoBack.setBackground(Color.GREEN);
+        buttonToGoBack.setBounds(800, 500, 200, 50);
+        buttonToGoBack.setFont(new Font(buttonToGoBack.getFont().getName(), buttonToGoBack.getFont().getStyle(), 18));
+
+        buttonToGoBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setContentPane(panel);
+                frame.invalidate();
+            }
+        });
+
+        panel2.add(buttonToGoBack);
+        panel2.add(updateStock);
+        panel2.add(updateLabel);
+
+        frame.setContentPane(panel2);
+
+        frame.invalidate();
+        frame.validate();
     }
 
 }
