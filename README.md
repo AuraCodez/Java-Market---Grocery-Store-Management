@@ -10,6 +10,6 @@ The program is implemented using object-oriented programming in Java, and consis
  - I am focusing on making the UI look better with FlatLaf (Java swing look and feel)
 
 Here is the current progress of what I have (GIF file) 2023-01-01. Some works need to be updated in terms of the UI of the program but for now I am pretty sastified with everything and am working to add in the rest of the methods onto the GUI.
-![](https://github.com/AuraCodez/GroceryStore/blob/main/ManagementSystem2023.gif)
+![](https://github.com/AuraCodez/GroceryStore/blob/main/demoProgram.gif)
 
 
