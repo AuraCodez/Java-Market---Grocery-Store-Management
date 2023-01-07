@@ -1,5 +1,6 @@
 
 //GUI Created by Ryan. L (https://github.com/AuraCodez)
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,7 +15,11 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
+import com.formdev.flatlaf.FlatIntelliJLaf;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -39,9 +44,9 @@ public class GUI {
         frame.setTitle("Store Management Program : Created by Ryan (https://github.com/AuraCodez)");
         frame.setSize(1050, 750);
         JPanel panel = new JPanel();
-        int red = 173;
-        int green = 216;
-        int blue = 230;
+        int red = 197;
+        int green = 197;
+        int blue = 255;
         Color color = new Color(red, green, blue);
         panel.setBackground(color);
 
@@ -95,14 +100,20 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog searchEmployeeDialog = new JDialog();
                 JPanel searchEmployeePanel = new JPanel();
-                searchEmployeePanel.setBackground(Color.blue);
+                int red = 197;
+                int green = 255;
+                int blue = 197;
+
+                Color searchEmployeeColor = new Color(red, green, blue);
+
+                searchEmployeePanel.setBackground(searchEmployeeColor);
                 searchEmployeePanel.setLayout(new GridBagLayout());
 
                 JLabel searchEmployeeName = new JLabel("Enter Employee Name: ");
                 JButton submitSearch = new JButton("Search");
 
                 JLabel isEmployeeFound = new JLabel();
-                searchEmployeeName.setForeground(Color.yellow);
+                searchEmployeeName.setForeground(Color.decode("#79BCFF"));
                 searchEmployeeName.setFont(searchEmployeeName.getFont().deriveFont(24f));
 
                 JTextField searchField = new JTextField(20);
@@ -156,7 +167,15 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog searchItemDialog = new JDialog();
                 JPanel searchItemPanel = new JPanel();
-                searchItemPanel.setBackground(Color.BLUE);
+
+                int red = 197;
+                int green = 255;
+                int blue = 197;
+
+                Color forSearchItem = new Color(red, green, blue);
+                searchItemPanel.setBackground(forSearchItem);
+
+
                 searchItemPanel.setLayout(new GridBagLayout());
 
                 JButton submitSearch = new JButton("Search");
@@ -164,7 +183,7 @@ public class GUI {
                 JLabel isFound = new JLabel();
 
                 JLabel searchItemName = new JLabel("Enter Item Name: ");
-                searchItemName.setForeground(Color.yellow);
+                searchItemName.setForeground(Color.decode("#79BCFF"));
                 searchItemName.setFont(searchItemName.getFont().deriveFont(24f));
 
                 JTextField searchItemField = new JTextField(20);
@@ -220,7 +239,12 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog itemDialog = new JDialog();
                 JPanel addItemPanel = new JPanel();
-                addItemPanel.setBackground(Color.BLUE);
+                int red = 1;
+                int green = 205;
+                int blue = 254;
+                Color colorForAddEmployee = new Color(red, green, blue);
+
+                addItemPanel.setBackground(colorForAddEmployee);
                 addItemPanel.setLayout(new GridBagLayout());
                 itemDialog.setTitle("Add items");
 
@@ -339,7 +363,12 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog addEmployeeDialog = new JDialog();
                 JPanel addEmployeePanel = new JPanel();
-                addEmployeePanel.setBackground(Color.BLUE);
+                int red = 1;
+                int green = 205;
+                int blue = 254;
+                Color colorForAddEmployee = new Color(red, green, blue);
+
+                addEmployeePanel.setBackground(colorForAddEmployee);
                 addEmployeePanel.setLayout(new GridBagLayout());
                 addEmployeeDialog.setTitle("Add Employees");
 
@@ -457,8 +486,12 @@ public class GUI {
                 removeEmployee.setPreferredSize(new Dimension(200, 75));
                 removeEmployee.setBackground(Color.RED);
                 removeEmployee.setBounds(650, 225, 150, 75);
-                employeeListPanel.setBackground(Color.BLUE);
                 employeeListPanel.setSize(new Dimension(840, 480));
+                int red = 174;
+                int green = 215;
+                int blue = 255;
+                Color colorForEmployeeList = new Color(red, green, blue);
+                employeeListPanel.setBackground(colorForEmployeeList);
                 employeeListDialog.setSize(840, 480);
                 employeeListDialog.setTitle("Employee Information");
 
@@ -474,7 +507,7 @@ public class GUI {
                         JTextField removeEmployeeField = new JTextField(20);
                         JLabel removeEmployeeLabel = new JLabel("Enter Name of employee");
                         removeEmployeeLabel.setFont(removeEmployeeLabel.getFont().deriveFont(24f));
-                        removeEmployeeLabel.setForeground(Color.YELLOW);
+                        removeEmployeeLabel.setForeground(Color.decode("#FFFF8F"));
 
                         JButton remove = new JButton("Remove");
                         remove.setBackground(Color.RED);
@@ -526,7 +559,11 @@ public class GUI {
 
                         removeListPanel.setSize(640, 480);
                         removeEmployeeAction.setSize(640, 480);
-                        removeListPanel.setBackground(Color.BLUE);
+                        int red = 174;
+                        int green = 215;
+                        int blue = 255;
+                        Color colorForRemoveListPanel = new Color(red, green, blue);
+                        removeListPanel.setBackground(colorForRemoveListPanel);
                         removeEmployeeAction.setTitle("Remove Employee");
                         removeEmployeeAction.add(removeListPanel);
                         removeEmployeeAction.setLocationRelativeTo(null);
@@ -571,7 +608,12 @@ public class GUI {
                 JButton removeItem = new JButton("Remove Item");
                 removeItem.setBackground(Color.RED);
                 removeItem.setPreferredSize(new Dimension(200, 75));
-                itemListPanel.setBackground(Color.BLUE);
+                int red = 174;
+                int green = 215;
+                int blue = 255;
+                Color colorForItemList = new Color(red, green, blue);
+                itemListPanel.setBackground(colorForItemList);
+
                 itemListPanel.setSize(new Dimension(840, 480));
                 itemListDialog.setSize(840, 480);
                 itemListDialog.setTitle("Item Inventory");
@@ -581,8 +623,14 @@ public class GUI {
 
                 removeItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+                        int red = 174;
+                        int green = 215;
+                        int blue = 255;
+                        Color colorForItemList = new Color(red, green, blue);
                         JDialog removeItemAction = new JDialog();
                         JPanel removeListPanel = new JPanel();
+                        removeListPanel.setBackground(colorForItemList);
+
                         removeListPanel.setLayout(new GridBagLayout());
 
                         JLabel removeItemLabel = new JLabel("Enter item name");
@@ -640,8 +688,6 @@ public class GUI {
 
                         removeListPanel.setSize(640, 480);
                         removeItemAction.setSize(640, 480);
-
-                        removeListPanel.setBackground(Color.BLUE);
                         removeItemAction.setTitle("Remove Employee");
                         removeItemAction.add(removeListPanel);
                         removeItemAction.setLocationRelativeTo(null);
@@ -714,6 +760,12 @@ public class GUI {
     }
 
     public static void main(String[] args) {
+        try {
+          UIManager.setLookAndFeel( new FlatIntelliJLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
+
         new GUI();
     }
 
