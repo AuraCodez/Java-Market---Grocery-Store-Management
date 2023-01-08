@@ -15,11 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-
-import com.formdev.flatlaf.FlatIntelliJLaf;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -27,8 +23,12 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 import java.awt.GridBagLayout;
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
+
+//Java look and feel flatlaf
+import com.formdev.flatlaf.FlatIntelliJLaf;
 
 public class GUI {
 
@@ -41,8 +41,16 @@ public class GUI {
     public GUI() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Store Management Program : Created by Ryan (https://github.com/AuraCodez)");
-        frame.setSize(1050, 750);
+        frame.setTitle("Store Management Program : Created by (https://github.com/AuraCodez)");
+        frame.setSize(1015, 750);
+
+        JLabel titleOfStore = new JLabel();
+        titleOfStore.setBounds(140, -25, 590, 150);
+
+        Font font = new Font("SansSerif", Font.BOLD, 28);
+        titleOfStore.setFont(font);
+        titleOfStore.setForeground(Color.blue);
+
         JPanel panel = new JPanel();
         int red = 197;
         int green = 197;
@@ -55,7 +63,7 @@ public class GUI {
         JButton clickNext = new JButton("Next Page");
         clickNext.setBackground(Color.green);
         clickNext.setPreferredSize(new Dimension(150, 75));
-        clickNext.setBounds(800, 500, 200, 50);
+        clickNext.setBounds(775, 500, 200, 50);
         clickNext.setFont(new Font(clickNext.getFont().getName(), clickNext.getFont().getStyle(), 18));
         panel.add(clickNext);
 
@@ -113,7 +121,7 @@ public class GUI {
                 JButton submitSearch = new JButton("Search");
 
                 JLabel isEmployeeFound = new JLabel();
-                searchEmployeeName.setForeground(Color.decode("#79BCFF"));
+                searchEmployeeName.setForeground(Color.decode("#33cccc"));
                 searchEmployeeName.setFont(searchEmployeeName.getFont().deriveFont(24f));
 
                 JTextField searchField = new JTextField(20);
@@ -175,7 +183,6 @@ public class GUI {
                 Color forSearchItem = new Color(red, green, blue);
                 searchItemPanel.setBackground(forSearchItem);
 
-
                 searchItemPanel.setLayout(new GridBagLayout());
 
                 JButton submitSearch = new JButton("Search");
@@ -183,7 +190,7 @@ public class GUI {
                 JLabel isFound = new JLabel();
 
                 JLabel searchItemName = new JLabel("Enter Item Name: ");
-                searchItemName.setForeground(Color.decode("#79BCFF"));
+                searchItemName.setForeground(Color.decode("#33cccc"));
                 searchItemName.setFont(searchItemName.getFont().deriveFont(24f));
 
                 JTextField searchItemField = new JTextField(20);
@@ -239,12 +246,12 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog itemDialog = new JDialog();
                 JPanel addItemPanel = new JPanel();
-                int red = 1;
-                int green = 205;
-                int blue = 254;
-                Color colorForAddEmployee = new Color(red, green, blue);
+                int red = 173;
+                int green = 216;
+                int blue = 230;
+                Color colorForAddItem = new Color(red, green, blue);
 
-                addItemPanel.setBackground(colorForAddEmployee);
+                addItemPanel.setBackground(colorForAddItem);
                 addItemPanel.setLayout(new GridBagLayout());
                 itemDialog.setTitle("Add items");
 
@@ -363,9 +370,9 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 JDialog addEmployeeDialog = new JDialog();
                 JPanel addEmployeePanel = new JPanel();
-                int red = 1;
-                int green = 205;
-                int blue = 254;
+                int red = 173;
+                int green = 216;
+                int blue = 230;
                 Color colorForAddEmployee = new Color(red, green, blue);
 
                 addEmployeePanel.setBackground(colorForAddEmployee);
@@ -721,7 +728,7 @@ public class GUI {
             }
         });
 
-        JLabel itemsLabel = new JLabel("Add new items to store by clicking the button");
+        JLabel itemsLabel = new JLabel("Ad d new items to store by clicking the button");
         itemsLabel.setBounds(100, 300, 350, 150);
 
         JLabel itemStock = new JLabel("Click to see current item inventory");
@@ -751,7 +758,11 @@ public class GUI {
         panel.add(itemStock);
         panel.add(searchEmployeeB);
         panel.add(searchEmployeeLabel);
+        panel.add(titleOfStore, BorderLayout.NORTH);
+        TypeWriter effect = new TypeWriter(titleOfStore, "Welcome to your Store Management System", 100);
+        effect.start();
 
+        frame.setResizable(false);
         frame.add(panel);
         frame.setContentPane(panel);
 
@@ -760,16 +771,12 @@ public class GUI {
     }
 
     public static void main(String[] args) {
-        try {
-          UIManager.setLookAndFeel( new FlatIntelliJLaf() );
-        } catch( Exception ex ) {
-            System.err.println( "Failed to initialize LaF" );
-        }
-
+        FlatIntelliJLaf.registerCustomDefaultsSource("style");
+        FlatIntelliJLaf.setup();
         new GUI();
     }
 
-    public  void openNextPage(JFrame frame, JPanel panel) {
+    public void openNextPage(JFrame frame, JPanel panel) {
         int red = 173;
         int green = 216;
         int blue = 230;
@@ -794,23 +801,16 @@ public class GUI {
                 chooseLabel.setFont(chooseLabel.getFont().deriveFont(24f));
                 chooseLabel.setForeground(Color.YELLOW);
 
-                
-                
-                //System.out.println(store.getListOfItems());
                 JList<Item> list = new JList<Item>();
                 DefaultListModel<Item> listModel = new DefaultListModel<Item>();
-                for(int i = 0; i < items.size(); i++) {
+                for (int i = 0; i < items.size(); i++) {
                     Item a = items.get(i);
                     listModel.addElement(a);
                 }
                 System.out.println(listModel);
 
-
-                
                 list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-
-                
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.gridx = 0;
                 gbc.gridy = 0;
@@ -820,7 +820,6 @@ public class GUI {
                 gbc.gridy = 2;
 
                 updatePanel.add(list, gbc);
-
 
                 updateStockDialog.setSize(640, 480);
                 updateStockDialog.setLocationRelativeTo(null);
@@ -833,7 +832,7 @@ public class GUI {
         // A button go back to the original panel.
         JButton buttonToGoBack = new JButton("Back");
         buttonToGoBack.setBackground(Color.GREEN);
-        buttonToGoBack.setBounds(800, 500, 200, 50);
+        buttonToGoBack.setBounds(775, 500, 200, 50);
         buttonToGoBack.setFont(new Font(buttonToGoBack.getFont().getName(), buttonToGoBack.getFont().getStyle(), 18));
 
         buttonToGoBack.addActionListener(new ActionListener() {
