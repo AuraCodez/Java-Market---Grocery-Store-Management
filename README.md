@@ -12,7 +12,7 @@ The GUI and Java classes was done in VS code.
  - I am focusing on making the UI look better with FlatLaf (Java swing look and feel)
 
 Here is the current progress of what I have (GIF file) 2023-01-07. Some works need to be updated in terms of the UI of the program but for now I am pretty sastified with everything and am working to add in the rest of the methods onto the GUI.
-![](https://github.com/AuraCodez/GroceryStore/blob/main/demoProgram.gif)
+![](https://github.com/AuraCodez/GroceryStore/blob/main/programDemo.gif)
 
 
 
