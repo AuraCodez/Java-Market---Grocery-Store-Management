@@ -1,6 +1,4 @@
 
-//GUI Created by Ryan. L (https://github.com/AuraCodez)
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
