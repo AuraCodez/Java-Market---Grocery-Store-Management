@@ -7,9 +7,7 @@ The program is implemented using object-oriented programming in Java, and consis
 
 The GUI and Java classes was done in VS code.
 
- - I am currently making an GUI for this project (Using Java Swing) so that everyone can use it easily, instead of it being a console application.
- - I also want to make the program save the employee information for the next time the program is run which requires the usage of some file or database such as MySQL, Oracle, and SQLite.
- - I am focusing on making the UI look better with FlatLaf (Java swing look and feel)
+ - I am currently making the program save the employee information for the next time the program is run which requires the usage of some file or database such as MySQL (in progress) 
 
 Here is the current progress of what I have (GIF file) 2023-01-07. Some works need to be updated in terms of the UI of the program but for now and am working to add in the rest of the methods onto the GUI.
 ![](https://github.com/AuraCodez/GroceryStore/blob/main/programDemo.gif)
