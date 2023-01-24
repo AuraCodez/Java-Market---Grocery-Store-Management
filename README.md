@@ -8,6 +8,7 @@ The program is implemented using object-oriented programming in Java, and consis
 The GUI and Java classes was done in VS code.
 
  - I am currently making the program save the employee information for the next time the program is run which requires the usage of some file or database such as MySQL (in progress) 
+ - To have a cleaner and more modern looking interface.
 
 Here is the current progress of what I have (GIF file) 2023-01-07. Some works need to be updated in terms of the UI of the program but for now and am working to add in the rest of the methods onto the GUI.
 ![](https://github.com/AuraCodez/GroceryStore/blob/main/programDemo.gif)
