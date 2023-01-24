@@ -334,6 +334,9 @@ public class GUI {
                         }
 
                         String name = itemNameLabelField.getText();
+                        DatabaseManagement db = new DatabaseManagement();
+                        db.insertItem(name, quantity, price);
+
                         Item itemObj = new Item(name.trim(), price, quantity);
                         items.add(itemObj);
 
@@ -438,6 +441,7 @@ public class GUI {
 
                 submitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+
                         String name = nameField.getText();
                         String gender = genderField.getText();
 
@@ -456,6 +460,8 @@ public class GUI {
                             employeeAddedButton.setText("Error Try Again");
                         }
 
+                        DatabaseManagement db = new DatabaseManagement();
+                        db.insertEmployees(name.trim(), salary, gender);
                         Employee obj = new Employee(name.trim(), salary, gender);
                         employees.add(obj);
 
@@ -550,6 +556,8 @@ public class GUI {
                                         isRemoved.setText("Removed from Database");
                                         dTable.removeRow(i);
                                         employees.remove(i);
+                                        DatabaseManagement db = new DatabaseManagement();
+                                        db.deleteEmployees(removeEmployeeField.getText());
                                     } else {
                                         isRemoved.setText("Name not found!");
                                     }
@@ -680,6 +688,8 @@ public class GUI {
                                         isRemovedItem.setText("Removed from Database");
                                         dTable.removeRow(i);
                                         items.remove(i);
+                                        DatabaseManagement db = new DatabaseManagement();
+                                        db.deleteItems(removeItemField.getText());
                                     } else {
                                         isRemovedItem.setText("Name not found!");
                                     }
