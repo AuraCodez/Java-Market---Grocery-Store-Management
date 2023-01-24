@@ -11,7 +11,7 @@ The GUI and Java classes was done in VS code.
  - To have a cleaner and more modern looking interface.
 
 Here is the current progress of what I have (GIF file) 2023-01-07. Some works need to be updated in terms of the UI of the program but for now and am working to add in the rest of the methods onto the GUI.
-![](https://github.com/AuraCodez/GroceryStore/blob/main/programDemo.gif)
+
 
 
 
