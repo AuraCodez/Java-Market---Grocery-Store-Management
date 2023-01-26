@@ -37,6 +37,8 @@ public class GUI {
     private JTable itemTable;
 
     public GUI() {
+
+        //Basic Setup for the frame and dialog
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Store Management Program : Created by (https://github.com/AuraCodez)");
@@ -71,6 +73,8 @@ public class GUI {
                 openNextPage(frame, panel);
             }
         });
+
+        //Buttons for the Main Page
 
         JButton resetEverything = new JButton("Reset Button"); // Work on this
         resetEverything.setPreferredSize(new Dimension(150, 75));
@@ -783,6 +787,8 @@ public class GUI {
         FlatIntelliJLaf.setup();
         new GUI();
     }
+
+    //To open the next page
 
     public void openNextPage(JFrame frame, JPanel panel) {
         int red = 173;

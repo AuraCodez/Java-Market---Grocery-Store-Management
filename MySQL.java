@@ -5,7 +5,6 @@ import java.sql.*; //Importing the Java SQL pkg
 import java.util.ResourceBundle; // ResourceBundle class to store config details like url, username, pw to establish connection
 
 public class MySQL {
-    //Connection to the server was hidden using a .properties file, and putting it to the .gitignore file.
     public static void main(String[] args) {
         ResourceBundle reader = null;
         reader = ResourceBundle.getBundle("mySQL/dbconfig");

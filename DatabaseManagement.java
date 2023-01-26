@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+//This class is used to connect and execute queries to the database
+
 public class DatabaseManagement {
     private Connection conn;
 
