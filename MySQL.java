@@ -1,4 +1,5 @@
 
+//Just testing my connection to the MySQL database I created to ensure that it works.
 
 import java.sql.*; //Importing the Java SQL pkg
 import java.util.ResourceBundle; // ResourceBundle class to store config details like url, username, pw to establish connection
