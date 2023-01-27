@@ -30,7 +30,6 @@ Add in more methods and possibly some graphs to track sales etc
 ## Current Video Demo (Last Updated 2023-01-24)
 
 
-![](https://github.com/AuraCodez/GroceryStore/blob/main/programDemo.gif)
 
 
 
