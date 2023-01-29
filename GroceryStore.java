@@ -122,7 +122,7 @@ public class GroceryStore {
 			int mid = (low + high) / 2;
 			String midItem = itemArray.get(mid);
 			if (midItem.toLowerCase().equals(name)) {
-				return mid;
+				return mid + 1;
 			} else if (midItem.compareTo(name) < 0) {
 				low = mid + 1;
 			} else {
@@ -141,7 +141,7 @@ public class GroceryStore {
 			int mid = (low + high) / 2;
 			String midEmployee = employeeArray.get(mid);
 			if (midEmployee.toLowerCase().equals(name)) {
-				return mid;
+				return mid + 1;
 			} else if (midEmployee.compareTo(name) < 0) {
 				low = mid + 1;
 			} else {

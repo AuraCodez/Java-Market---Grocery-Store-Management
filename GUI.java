@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -153,7 +154,7 @@ public class GUI {
                     public void actionPerformed(ActionEvent e) {
                         if (!searchField.getText().isEmpty()) {
                             if (store.searchEmployee(searchField.getText().toLowerCase().trim()) != -1) {
-                                isEmployeeFound.setText("Employee is found");
+                                isEmployeeFound.setText("Employee is found at row " + store.searchEmployee(searchField.getText().toLowerCase()));
                             } else {
                                 isEmployeeFound.setText("Not Found");
                             }
@@ -220,9 +221,10 @@ public class GUI {
 
                 submitSearch.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+                        System.out.println(items);
                         if (!searchItemField.getText().isEmpty()) {
                             if (store.searchItem(searchItemField.getText().toLowerCase().trim()) != -1) {
-                                isFound.setText("In stock!");
+                                isFound.setText("In stock! At row " + store.searchItem(searchItemField.getText().toLowerCase()));
                             } else {
                                 isFound.setText("Not in stock!");
                             }
@@ -740,22 +742,22 @@ public class GUI {
             }
         });
 
-        JLabel itemsLabel = new JLabel("Ad d new items to store by clicking the button");
+        JLabel itemsLabel = new JLabel("<html><b>Add new items to store by clicking the button</b></html>");
         itemsLabel.setBounds(100, 300, 350, 150);
 
-        JLabel itemStock = new JLabel("Click to see current item inventory");
+        JLabel itemStock = new JLabel("<html><b>Click to see current item inventory</b></html>");
         itemStock.setBounds(500, 300, 350, 150);
 
-        JLabel employeeListLabel = new JLabel("Click to see employee information");
+        JLabel employeeListLabel = new JLabel("<html><b>Click to see employee information</b></html>");
         employeeListLabel.setBounds(500, 100, 350, 150);
 
-        JLabel label = new JLabel("Add new employees by clicking the button");
+        JLabel label = new JLabel("<html><b>Add new employees by clicking the button</b></html>");
         label.setBounds(100, 100, 350, 150);
 
-        JLabel searchItemLabel = new JLabel("Check if an item in the inventory");
+        JLabel searchItemLabel = new JLabel("<html><b>Check if an item in the inventory</b></html>");
         searchItemLabel.setBounds(100, 500, 350, 150);
 
-        JLabel searchEmployeeLabel = new JLabel("Check if an employee is in the store");
+        JLabel searchEmployeeLabel = new JLabel("<html><b>Check if an employee is in the store</b></html>");
         searchEmployeeLabel.setBounds(500, 500, 250, 150);
 
         panel.add(addEmployeeB);
@@ -801,7 +803,7 @@ public class GUI {
 
         JButton updateStock = new JButton("Update Stocks");
         updateStock.setBounds(100, 100, 200, 50);
-        JLabel updateLabel = new JLabel("Update Current Inventory");
+        JLabel updateLabel = new JLabel("<html><b>Update Current Inventory</b></html>");
         updateLabel.setBounds(100, 100, 350, 150);
 
         updateStock.addActionListener(new ActionListener() {
