@@ -14,7 +14,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -39,7 +38,7 @@ public class GUI {
 
     public GUI() {
 
-        //Basic Setup for the frame and dialog
+        // Basic Setup for the frame and dialog
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Store Management Program : Created by (https://github.com/AuraCodez)");
@@ -75,7 +74,7 @@ public class GUI {
             }
         });
 
-        //Buttons for the Main Page
+        // Buttons for the Main Page
 
         JButton resetEverything = new JButton("Reset Button"); // Work on this
         resetEverything.setPreferredSize(new Dimension(150, 75));
@@ -154,7 +153,8 @@ public class GUI {
                     public void actionPerformed(ActionEvent e) {
                         if (!searchField.getText().isEmpty()) {
                             if (store.searchEmployee(searchField.getText().toLowerCase().trim()) != -1) {
-                                isEmployeeFound.setText("Employee is found at row " + store.searchEmployee(searchField.getText().toLowerCase()));
+                                isEmployeeFound.setText("Employee is found at row "
+                                        + store.searchEmployee(searchField.getText().toLowerCase()));
                             } else {
                                 isEmployeeFound.setText("Not Found");
                             }
@@ -224,7 +224,8 @@ public class GUI {
                         System.out.println(items);
                         if (!searchItemField.getText().isEmpty()) {
                             if (store.searchItem(searchItemField.getText().toLowerCase().trim()) != -1) {
-                                isFound.setText("In stock! At row " + store.searchItem(searchItemField.getText().toLowerCase()));
+                                isFound.setText("In stock! At row "
+                                        + store.searchItem(searchItemField.getText().toLowerCase()));
                             } else {
                                 isFound.setText("Not in stock!");
                             }
@@ -790,7 +791,7 @@ public class GUI {
         new GUI();
     }
 
-    //To open the next page
+    // To open the next page
 
     public void openNextPage(JFrame frame, JPanel panel) {
         int red = 173;
